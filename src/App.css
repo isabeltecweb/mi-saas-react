@@ -1,184 +1,266 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* CSS PROYECTO SAAS */
+/* 1. RESETEO Y BASES */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+/* 2. LAYOUT PRINCIPAL (Flexbox)*/
+.app-container{
+    display: flex; /*Ponemos Sidebar y chat en fila*/
+    height: 100vh; /*Ocupar el 100% de la altura de la ventana*/
+    overflow: hidden; /*Evita que la web entera haga scroll*/
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
+/* 3. SIDEBAR (Barra lateral) */
+.sidebar{
+    width: 260px; /*Ancho fijo para el menú */
+    background-color: #202123; /*Color oscuro tipo CHATGPT*/
+    color: white;
     display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+    flex-direction: column; /*Los elementos del menú van*/
+    justify-content: space-between; /*Logo arriba, perfil abajo*/
+    padding: 15px;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.menu-lateral button{
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #4d4d4f;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
+.historial ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
 
-  &::before,
-  &::after {
-    content: '';
+.historial li {
+    margin-bottom: 8px;
+}
+
+/* 4. AREA DE CHAT (Zona Central) */
+
+.chat-area{
+    flex-grow: 1; /*Ocupa TODO el espacio restante de la pantalla*/
+    display: flex;
+    flex-direction: column; /*Cabecera arriba, mensajes centro, input abajo*/
+    background-color: #343541;
+}
+
+.chat-header{
+    padding: 15px;
+    border-bottom: 1px solid #4d4d4f;
+    color: #ececf1;
+    text-align: center;
+}
+
+.controles-filtros {
+    text-align: center;
+    padding: 10px;
+    background-color: #202123;
+    border-bottom: 1px solid #4d4d4f;
+
+}
+
+.controles-filtros button {
+    background: #444654;
+    color: white;
+    border: 1px solid #565869;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.controles-filtros button:hover {
+    background-color: #565869;
+}
+
+
+/* Modificamos el mensajes-container
+    - mensajes uno debajo del otro
+    - scroll vertical
+    - simulación real de chat
+*/
+.mensajes-container {
+    flex-grow: 1; /*Mensajes ocupan el centro*/
+    padding: 20px 40px;
+    display: flex;
+    /* Se agrega el flex-direction : column por ser chat */
+    flex-direction: column;
+    /*flex-start : cololar elementos al inicio del contenedor*/
+    justify-content: flex-start;
+    /*strech los elementos ocupan el ancho disponible*/
+    align-items: stretch;
+    overflow-y: auto;
+}
+
+/*BURBUJAS*/
+.msg-usuario, .msg-ia {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    max-width: 80%;
+    width: fit-content;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+/* La Burbuja de usuario se alinea a la derecha */
+.msg-usuario {
+    background-color: #19c37d ;
+    color: white;
+    align-self: flex-end;
+}
+/*Se alinea a la izquierda*/
+.msg-ia {
+    background-color: #444654;
+    color: #d1d1d1;
+    align-self: flex-start;
+}
+
+
+/*5. FORMULARIO DE ENTRADA (input)*/
+.input-area{
+    padding: 20px 40px;
+}
+
+.chat-form{
+    max-width: 700px;
+    margin: 0 auto; /*Centra el formulario en el medio*/
+    display: flex;/*El input y el boton en fila*/
+    background-color: #40414f;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.chat-form input {
+    flex-grow: 1; /* El input estira todo lo que puede*/
+    background-color: transparent;
+    border: none; /*Sin borde*/
+    color: white;
+    padding: 10px;
+    outline: none; /*Quita el borde azul al hacer click*/
+    /*Aumentamos el tamño de la letra del input*/
+    font-size: 1rem;
+}
+
+.chat-form button {
+    background-color: #19c37d;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chat-form button:hover {
+    opacity: 0.9;
+}
+/* sr-only ocultar elemente visualmente sin eliminarlo HTML */
+.sr-only {
+    /*position absolute - para mover libremente top left bottom etc*/
     position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+    /*Mueve muy lejos a la izquierda*/
+    left: -9999px;
 }
+
+/*Boton Peligro (Borrar)*/
+.controles-filtros .btn-peligro {
+    background-color: #e74c3c;
+    border: 1px solid #c0392b;
+}
+
+.controles-filtros .btn-peligro:hover {
+    background-color: #c0392b;
+}
+
+/*Boton Buscador  */
+.buscador-container {
+    text-align: center;
+    padding: 10px;
+    background-color: #202123;
+    border-bottom: 1px solid #4d4d4f;
+}
+
+.buscador-container input {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    width: 60%;
+    max-width: 400px;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.buscador-container button {
+    background-color: #19c37d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.buscador-container button:hover {
+    opacity: 0.9;
+}
+
+/*MAGIA RESPONSIVE - ADAPTANDO EL CHAT A MÓVILES*/
+
+/*Si la pantalla es de tamaño tablet
+o móvil (menos de 768px)
+*/
+@media (max-width: 768px){
+    /*1. Ocultanos menu lateral*/
+    .sidebar {
+        /*Hace de que la barra 
+        desaparezca*/
+        display: none;
+    }
+    /*2. Damos mas espacio al texto del chat*/
+    .mensajes-container{
+        /*Reducir el padding*/
+        padding: 20px;
+    }
+    /*3. Ajustamos el formulario para que
+    quepa bien en pantallas estrechas*/
+    .input-area{
+        padding: 15px;
+    }
+    .chat-form {
+        padding: 5px;
+    }
+
+    .chat-form input{
+        font-size: 0.9rem; /*letra mas pequeña*/
+    }
+    .chat-form button{
+        padding: 8px 12px;/*boton mas compacto*/
+    }
+}
+
+@media (max-width:480px) {
+    .chat-header h3 {
+        font-size: 1.1rem; /*Achicamos el titulo superior*/
+    }
+
+    .msg-usuario, .msg-ia {
+        max-width: 90%;
+        font-size: 0.95rem;
+    }
+
+}
+
+

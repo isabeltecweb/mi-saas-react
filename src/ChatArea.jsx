@@ -1,29 +1,32 @@
-// COMPONENTE: Sidebar (Menú Lateral)
-function Sidebar() {
-    //Este componente no tiene lógica compleja,
-    //solo devuelve la estructura visual
-    return (
-        //Recuerda: Convertinos el <aside class="sidebar">
-        // del viejo HTML a className.
-        <aside className="sidebar">
-            <div className="logo-area">
-                <h2>IA Master</h2>
-            </div>
-            <nav className="menu-lateral">
-                <button>+ Nuevo Chat</button>
-                <div className="historial">
-                    <p>Historial reciente...</p>
-                    <ul>
-                        <li>¿Cómo hacer dieta?</li>
-                        <li>Receta de pizaa</li>
-                    </ul>
-                </div>
-            </nav>
+//COMPONENTE: : ChatArea (Zona derecha principal)
+//1. Importar componentes hijos
+import Mensaje from './Mensaje';
 
-            <div className="perfil">
-                <span>Usuario Pro</span>
-            </div>
-        </aside>
+function ChatArea(){
+    return (
+        // La etiqueta <main> envuelve toda la parte derecha de la pantalla
+        <main className='chat-area'>
+            {/* Zona 1. : Historial de mensajes*/}
+            <section className='mensajes-container' id='caja-mensajes'>
+                {/*Aquí llamamos a nuestro componente <Mensaje /> como
+                si fuera una etiqueta HTML nueva*/}
+                <Mensaje rol="ia" texto="¡Hola! Soy IA Master. ¿En que te ayudo hoy en React?" />
+                <Mensaje rol="usuario" texto="Quiero aprender a usar componentes."/>
+                <Mensaje rol="ia" texto="¡Excelente elección! Acabas de reutilizar código"/>
+            </section>
+                {/*Zona 2. LA CAJA PARA ESCRIBIR (El input) */}
+                <footer className='input-area'>
+                    <form className='chat-form'>
+                        <input
+                        type='text'
+                        id='mensaje-input'
+                        placeholder='Escribe tu pregunta aquí...'
+                        autoComplete='off'
+                        />
+                        <button type='submit'>Enviar</button>
+                    </form>
+                </footer>
+        </main>
     )
 }
-export default Sidebar;
+export default ChatArea;
