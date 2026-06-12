@@ -1,39 +1,48 @@
-/* CSS PROYECTO SAAS */
+/* CSS PROYECTO SAAS - IDENTIDAD GASTRONÓMICA PERUANA MILENARIA */
+
 /* 1. RESETEO Y BASES */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Fuentes nativas para 100% Lighthouse */
 }
 
 /* 2. LAYOUT PRINCIPAL (Flexbox)*/
-.app-container{
-    display: flex; /*Ponemos Sidebar y chat en fila*/
-    height: 100vh; /*Ocupar el 100% de la altura de la ventana*/
-    overflow: hidden; /*Evita que la web entera haga scroll*/
+.app-container {
+    display: flex; 
+    height: 100vh; 
+    overflow: hidden; 
+    background-color: #1E120B; /* Arcilla Oscura */
 }
 
 /* 3. SIDEBAR (Barra lateral) */
-.sidebar{
-    width: 260px; /*Ancho fijo para el menú */
-    background-color: #202123; /*Color oscuro tipo CHATGPT*/
-    color: white;
+.sidebar {
+    width: 260px; 
+    background-color: #160D08; /* Súper oscuro heráldico */
+    color: #F5ECD7;
     display: flex;
-    flex-direction: column; /*Los elementos del menú van*/
-    justify-content: space-between; /*Logo arriba, perfil abajo*/
+    flex-direction: column; 
+    justify-content: space-between; 
     padding: 15px;
+    border-right: 1px solid #2D1B10;
 }
 
-.menu-lateral button{
+.menu-lateral button {
     width: 100%;
     padding: 12px;
     background: transparent;
-    border: 1px solid #4d4d4f;
-    color: white;
+    border: 1px solid #C04000; /* Borde color Ají Panca */
+    color: #F5ECD7;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 20px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.menu-lateral button:hover {
+    background: #2D1B10;
 }
 
 .historial ul {
@@ -43,66 +52,59 @@
 
 .historial li {
     margin-bottom: 8px;
+    color: #D2B48C;
 }
 
 /* 4. AREA DE CHAT (Zona Central) */
-
-.chat-area{
-    flex-grow: 1; /*Ocupa TODO el espacio restante de la pantalla*/
+.chat-area {
+    flex-grow: 1; 
     display: flex;
-    flex-direction: column; /*Cabecera arriba, mensajes centro, input abajo*/
-    background-color: #343541;
+    flex-direction: column; 
+    background-color: #1E120B; /* Fondo optimizado para pantallas OLED y batería */
 }
 
-.chat-header{
+.chat-header {
     padding: 15px;
-    border-bottom: 1px solid #4d4d4f;
-    color: #ececf1;
+    border-bottom: 1px solid #2D1B10;
+    color: #D4AF37; /* Oro Inca */
     text-align: center;
+    background-color: #160D08;
 }
 
 .controles-filtros {
     text-align: center;
     padding: 10px;
-    background-color: #202123;
-    border-bottom: 1px solid #4d4d4f;
-
+    background-color: #160D08;
+    border-bottom: 1px solid #2D1B10;
 }
 
 .controles-filtros button {
-    background: #444654;
-    color: white;
-    border: 1px solid #565869;
+    background: #2D1B10;
+    color: #F5ECD7;
+    border: 1px solid #4E3629;
     padding: 8px 15px;
     margin: 0 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
 }
+
 .controles-filtros button:hover {
-    background-color: #565869;
+    background-color: #4E3629;
 }
 
-
-/* Modificamos el mensajes-container
-    - mensajes uno debajo del otro
-    - scroll vertical
-    - simulación real de chat
-*/
 .mensajes-container {
-    flex-grow: 1; /*Mensajes ocupan el centro*/
+    flex-grow: 1; 
     padding: 20px 40px;
     display: flex;
-    /* Se agrega el flex-direction : column por ser chat */
     flex-direction: column;
-    /*flex-start : cololar elementos al inicio del contenedor*/
     justify-content: flex-start;
-    /*strech los elementos ocupan el ancho disponible*/
     align-items: stretch;
     overflow-y: auto;
+    will-change: scroll-position; /* Optimización del motor de renderizado */
 }
 
-/*BURBUJAS*/
+/* BURBUJAS */
 .msg-usuario, .msg-ia {
     padding: 15px;
     border-radius: 10px;
@@ -110,157 +112,106 @@
     max-width: 80%;
     width: fit-content;
     line-height: 1.5;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    contain: content; /* Aislamiento de layout CSS */
 }
 
-/* La Burbuja de usuario se alinea a la derecha */
 .msg-usuario {
-    background-color: #19c37d ;
-    color: white;
+    background-color: #4E3629; /* Marrón usuario */
+    color: #F5ECD7;
     align-self: flex-end;
+    border-right: 4px solid #D4AF37; /* Detalle oro */
 }
-/*Se alinea a la izquierda*/
+
 .msg-ia {
-    background-color: #444654;
-    color: #d1d1d1;
+    background-color: #2D1B10; /* Arcilla IA */
+    color: #F5ECD7;
     align-self: flex-start;
+    border-left: 4px solid #C04000; /* Detalle Ají Panca */
 }
 
-
-/*5. FORMULARIO DE ENTRADA (input)*/
-.input-area{
+/* 5. FORMULARIO DE ENTRADA (input) */
+.input-area {
     padding: 20px 40px;
+    background-color: #1E120B;
 }
 
-.chat-form{
+.chat-form {
     max-width: 700px;
-    margin: 0 auto; /*Centra el formulario en el medio*/
-    display: flex;/*El input y el boton en fila*/
-    background-color: #40414f;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; 
+    display: flex;
+    align-items: center;
+    background-color: #2D1B10;
+    padding: 8px;
+    border-radius: 24px; /* Estilo píldora moderno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4E3629;
 }
 
 .chat-form input {
-    flex-grow: 1; /* El input estira todo lo que puede*/
+    flex-grow: 1; 
     background-color: transparent;
-    border: none; /*Sin borde*/
-    color: white;
+    border: none; 
+    color: #F5ECD7;
     padding: 10px;
-    outline: none; /*Quita el borde azul al hacer click*/
-    /*Aumentamos el tamño de la letra del input*/
+    outline: none; 
     font-size: 1rem;
 }
 
 .chat-form button {
-    background-color: #19c37d;
+    background-color: #C04000; /* Botón Ají Panca */
     color: white;
     border: none;
-    padding: 5px 15px;
-    border-radius: 5px;
+    padding: 8px 20px;
+    border-radius: 18px;
     cursor: pointer;
-    transition: 0.3s;
+    font-weight: bold;
+    transition: opacity 0.2s;
 }
 
 .chat-form button:hover {
     opacity: 0.9;
 }
-/* sr-only ocultar elemente visualmente sin eliminarlo HTML */
+
+/* Elementos multimedia multimedia nativos */
+.media-render {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #4E3629;
+}
+
+/* Clases de utilidad */
 .sr-only {
-    /*position absolute - para mover libremente top left bottom etc*/
     position: absolute;
-    /*Mueve muy lejos a la izquierda*/
     left: -9999px;
 }
 
-/*Boton Peligro (Borrar)*/
 .controles-filtros .btn-peligro {
-    background-color: #e74c3c;
-    border: 1px solid #c0392b;
+    background-color: #ba2516;
+    border: 1px solid #8c190e;
 }
 
 .controles-filtros .btn-peligro:hover {
-    background-color: #c0392b;
+    background-color: #8c190e;
 }
 
-/*Boton Buscador  */
-.buscador-container {
-    text-align: center;
-    padding: 10px;
-    background-color: #202123;
-    border-bottom: 1px solid #4d4d4f;
+/* ANIMACIÓN MICRO */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-.buscador-container input {
-    padding: 8px 15px;
-    border-radius: 4px;
-    border: none;
-    width: 60%;
-    max-width: 400px;
-    outline: none;
-    font-size: 0.95rem;
+/* MEDIA QUERIES RESPONSIVE */
+@media (max-width: 768px) {
+    .sidebar { display: none; }
+    .mensajes-container { padding: 20px; }
+    .input-area { padding: 15px; }
+    .chat-form { padding: 5px; }
+    .chat-form input { font-size: 0.95rem; }
 }
 
-.buscador-container button {
-    background-color: #19c37d;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+@media (max-width: 480px) {
+    .msg-usuario, .msg-ia { max-width: 95%; font-size: 0.95rem; }
 }
-.buscador-container button:hover {
-    opacity: 0.9;
-}
-
-/*MAGIA RESPONSIVE - ADAPTANDO EL CHAT A MÓVILES*/
-
-/*Si la pantalla es de tamaño tablet
-o móvil (menos de 768px)
-*/
-@media (max-width: 768px){
-    /*1. Ocultanos menu lateral*/
-    .sidebar {
-        /*Hace de que la barra 
-        desaparezca*/
-        display: none;
-    }
-    /*2. Damos mas espacio al texto del chat*/
-    .mensajes-container{
-        /*Reducir el padding*/
-        padding: 20px;
-    }
-    /*3. Ajustamos el formulario para que
-    quepa bien en pantallas estrechas*/
-    .input-area{
-        padding: 15px;
-    }
-    .chat-form {
-        padding: 5px;
-    }
-
-    .chat-form input{
-        font-size: 0.9rem; /*letra mas pequeña*/
-    }
-    .chat-form button{
-        padding: 8px 12px;/*boton mas compacto*/
-    }
-}
-
-@media (max-width:480px) {
-    .chat-header h3 {
-        font-size: 1.1rem; /*Achicamos el titulo superior*/
-    }
-
-    .msg-usuario, .msg-ia {
-        max-width: 90%;
-        font-size: 0.95rem;
-    }
-
-}
-
-
